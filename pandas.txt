@@ -1,0 +1,80 @@
+import pandas as pd
+
+
+data ={
+    "Name":["John", "Alex", "Zair", "Petr"],
+    "Age":[17, 15, 27, 9],
+    "City":["London", "Omsk", "Moscow", "Paris"]
+}
+
+df = pd.DataFrame(data)
+
+print(df)
+
+
+#  Name  Age    City
+0  John   17  London
+1  Alex   15    Omsk
+2  Zair   27  Moscow
+3  Petr    9   Paris
+-------------------------------------------------------------------
+import pandas as pd
+
+
+data ={
+    "Name":["John", "Alex", "Zair", "Petr", "Ivan"],
+    "Age":[17, 15,None, 27, 9],
+    "City":["London", "Omsk",None, "Moscow", "Paris"],
+}
+
+df = pd.DataFrame(data)
+
+df.fillna(0, inplace=True)  #позволяет подставить любое значение, вместо None
+
+df.drop_duplicates(inplace=True)  #удаляет дубликаты
+
+df["Age"] = df["Age"].astype(int)  #Может поменять тип элеменета
+
+grouped =df.groupby("Age").sum()  #Групировка
+
+print(df)
+-------------------------------------------------------------------------------------
+import pandas as pd
+
+df = pd.read_csv('platform.csv')
+
+print('Данные: ')
+
+print(df.head())  #Вывод первых n значений в столбце.
+
+df['Views'] = df['Views'].fillna(df['Views'].mean())
+
+df['Revenue'] = df['Revenue'].fillna(0)
+
+df.drop_duplicates(inplace=True)
+
+df['Views'] = df['Views'].astype(int)
+df['Date'] = pd.to_datetime(df['Date'])
+
+print(df.describe())  #Метод describe показывает основные статистические характеристики данных по каждому числовому признаку
+
+--------------------------------------------------------------------------------------------------------------------------------
+
+filtred = df[df['Platform'] == "Youtube"]  #Фильтр
+print(filtred)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
